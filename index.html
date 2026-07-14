@@ -3,220 +3,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Bio</title>
-    <!-- Подключаем красивые иконки -->
+    <title>Bio</title>
+    <!-- Подключение иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            /* Палитра Claude */
+            --color-bone-parchment: #f8f8f6;
+            --color-paper-white: #ffffff;
+            --color-soft-stone: #efeeeb;
+            --color-carbon-ink: #121212;
+            --color-graphite: #373734;
+            --color-ashen: #7b7974;
+            --color-mist: #b7b7b5;
+            --color-chalk: #e7e6e1;
+            --color-clay: #d97757;
+
+            /* Шрифты */
+            --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0f0c1b, #201335, #0f0c1b);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #fff;
+            background-color: var(--color-bone-parchment);
+            color: var(--color-carbon-ink);
+            font-family: var(--font-sans);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Главный контейнер-карточка */
+        /* Главная карточка (эстетика бумажного листа) */
         .bio-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px rgba(255, 255, 255, 0.1) solid;
+            background-color: var(--color-paper-white);
+            border: 1px solid var(--color-chalk);
             border-radius: 24px;
-            padding: 35px 25px;
+            padding: 32px;
             width: 100%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 20px 0px;
         }
 
-        /* Аватарка */
+        /* Аватарка (черно-белый стиль) */
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #b388ff;
-            box-shadow: 0 0 20px rgba(179, 136, 255, 0.5);
-            margin-bottom: 20px;
+            filter: grayscale(100%); /* Делает фото черно-белым */
+            border: 1px solid var(--color-mist);
+            margin-bottom: 24px;
         }
 
+        /* Имя (Антиква) */
         h1 {
-            font-size: 1.6rem;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            color: var(--color-carbon-ink);
+            margin-bottom: 8px;
         }
 
+        /* Возраст с глиняным акцентом */
         .age {
-            font-size: 0.9rem;
-            color: #b388ff;
-            margin-bottom: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-size: 14px;
+            color: var(--color-ashen);
+            margin-bottom: 32px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        /* Музыкальный плеер */
+        .age::after {
+            content: "•";
+            color: var(--color-clay); /* Тот самый единственный цветной акцент */
+            font-size: 16px;
+        }
+
+        /* Контейнер плеера */
         .player-container {
-            background: rgba(0, 0, 0, 0.3);
+            background-color: var(--color-soft-stone);
             border-radius: 16px;
-            padding: 15px;
-            margin-top: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 24px 16px;
+            margin-bottom: 24px;
         }
 
         .player-title {
-            font-size: 0.85rem;
-            color: #aaa;
-            margin-bottom: 10px;
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: var(--color-ashen);
+            margin-bottom: 8px;
         }
 
         .track-info {
-            font-weight: bold;
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            color: #fff;
-            min-height: 20px;
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--color-carbon-ink);
+            margin-bottom: 16px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
+        /* Кнопки управления */
         .controls {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 15px;
+            gap: 24px;
+            margin-bottom: 20px;
         }
 
         .btn {
             background: none;
             border: none;
-            color: #fff;
+            color: var(--color-graphite);
             cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.2s ease;
+            font-size: 16px;
+            transition: color 0.2s ease;
         }
 
         .btn:hover {
-            color: #b388ff;
-            transform: scale(1.1);
+            color: var(--color-carbon-ink);
         }
 
+        /* Кнопка Play (Инверсия: темный круг, светлая иконка) */
         .btn-play {
-            font-size: 1.8rem;
-            background: #b388ff;
-            color: #0f0c1b;
-            width: 50px;
-            height: 50px;
+            background-color: var(--color-carbon-ink);
+            color: var(--color-bone-parchment);
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 10px rgba(179, 136, 255, 0.4);
+            font-size: 14px;
+            transition: background-color 0.2s ease;
         }
 
         .btn-play:hover {
-            color: #fff;
-            background: #9d66ff;
-            transform: scale(1.05);
+            background-color: var(--color-graphite);
+            color: var(--color-bone-parchment);
         }
 
-        /* Список треков */
+        /* Список воспроизведения */
         .playlist {
             list-style: none;
-            margin-top: 15px;
             text-align: left;
-            max-height: 150px;
+            max-height: 160px;
             overflow-y: auto;
-            padding-right: 5px;
+            padding-right: 4px;
+            border-top: 1px solid var(--color-chalk);
+            padding-top: 12px;
         }
 
-        /* Стилизация скроллбара */
         .playlist::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
         .playlist::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            background: var(--color-mist);
+            border-radius: 2px;
         }
 
         .playlist-item {
-            padding: 8px 12px;
+            padding: 8px 10px;
             border-radius: 8px;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             cursor: pointer;
-            font-size: 0.85rem;
-            transition: background 0.2s;
+            font-size: 13px;
+            color: var(--color-graphite);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .playlist-item:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.03);
+            color: var(--color-carbon-ink);
         }
 
         .playlist-item.active {
-            background: rgba(179, 136, 255, 0.2);
-            color: #b388ff;
-            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: var(--color-carbon-ink);
+            font-weight: 500;
         }
 
-        /* Соцсети/Ссылки */
-        .socials {
-            display: flex;
+        /* Кнопка Telegram (Стиль Filled Dark Button) */
+        .telegram-btn {
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .social-link {
-            color: #fff;
-            font-size: 1.4rem;
+            gap: 8px;
+            background-color: var(--color-carbon-ink);
+            color: var(--color-bone-parchment);
             text-decoration: none;
-            transition: color 0.3s, transform 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: background-color 0.2s ease;
+            width: 100%;
         }
 
-        .social-link:hover {
-            color: #b388ff;
-            transform: translateY(-3px);
+        .telegram-btn:hover {
+            background-color: var(--color-graphite);
         }
     </style>
 </head>
 <body>
 
     <div class="bio-card">
-        <!-- Аватарка (имя файла должно быть avatar.png) -->
-        <img src="avatar.png" alt="Avatar" class="avatar">
+        <!-- Твое изображение (автоматически переводится в ЧБ) -->
+        <img src="avatar.png" alt="Аватар" class="avatar">
         
-        <!-- Твое имя / никнейм -->
-        <h1>Твой Ник / Имя</h1>
-        <div class="age">14 years old</div>
+        <!-- Твое имя -->
+        <h1>Твое Имя</h1>
+        <div class="age">14 лет</div>
 
-        <!-- Аудиоплеер -->
+        <!-- Минималистичный аудиоплеер -->
         <div class="player-container">
             <div class="player-title">Сейчас играет</div>
-            <div class="track-info" id="track-title">Выберите трек</div>
+            <div class="track-info" id="track-title">Выберите песню</div>
             
             <audio id="audio-player" src=""></audio>
             
@@ -227,13 +246,12 @@
             </div>
 
             <ul class="playlist" id="playlist">
-                <!-- Плейлист -->
                 <li class="playlist-item active" data-src="yashelegem.mp3">
                     <span>Рустам Асадуллин — Яшьлегем</span>
                     <i class="fas fa-music"></i>
                 </li>
                 <li class="playlist-item" data-src="kochaklama.mp3">
-                    <span>Анвар Нургалиев — Кочаклама...</span>
+                    <span>Анвар Нургалиев — Кочаклама яратмыйча</span>
                     <i class="fas fa-music"></i>
                 </li>
                 <li class="playlist-item" data-src="yalgiz_torna.mp3">
@@ -241,18 +259,16 @@
                     <i class="fas fa-music"></i>
                 </li>
                 <li class="playlist-item" data-src="chakyr_gina_mine.mp3">
-                    <span>Ринат Рахматуллин — Чакыр...</span>
+                    <span>Ринат Рахматуллин — Чакыр гына мине</span>
                     <i class="fas fa-music"></i>
                 </li>
             </ul>
         </div>
 
-        <!-- Кнопки соцсетей (замени решетки '#' на свои ссылки) -->
-        <div class="socials">
-            <a href="#" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank" class="social-link"><i class="fab fa-telegram"></i></a>
-            <a href="#" target="_blank" class="social-link"><i class="fab fa-vk"></i></a>
-        </div>
+        <!-- Твой Telegram профиль -->
+        <a href="https://t.me/JanKlod22487" target="_blank" class="telegram-btn">
+            <i class="fab fa-telegram-plane"></i> Связаться в Telegram
+        </a>
     </div>
 
     <script>
@@ -266,7 +282,6 @@
         let currentTrackIndex = 0;
         let isPlaying = false;
 
-        // Загрузка трека
         function loadTrack(index) {
             playlistItems.forEach(item => item.classList.remove('active'));
             const activeItem = playlistItems[index];
@@ -276,19 +291,17 @@
             trackTitle.textContent = activeItem.querySelector('span').textContent;
         }
 
-        // Воспроизведение / Пауза
         function togglePlay() {
             if (isPlaying) {
                 audio.pause();
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
             } else {
-                audio.play().catch(e => console.log("Нажмите на страницу для воспроизведения"));
+                audio.play().catch(e => console.log("Для старта музыки нужно кликнуть по странице"));
                 playBtn.innerHTML = '<i class="fas fa-pause"></i>';
             }
             isPlaying = !isPlaying;
         }
 
-        // Переключение треков
         function nextTrack() {
             currentTrackIndex = (currentTrackIndex + 1) % playlistItems.length;
             loadTrack(currentTrackIndex);
@@ -301,12 +314,10 @@
             if (isPlaying) audio.play();
         }
 
-        // События кликов
         playBtn.addEventListener('click', togglePlay);
         nextBtn.addEventListener('click', nextTrack);
         prevBtn.addEventListener('click', prevTrack);
 
-        // Клик по треку в списке
         playlistItems.forEach((item, index) => {
             item.addEventListener('click', () => {
                 currentTrackIndex = index;
@@ -316,10 +327,7 @@
             });
         });
 
-        // Автопереключение по окончании трека
         audio.addEventListener('ended', nextTrack);
-
-        // Инициализация первого трека
         loadTrack(currentTrackIndex);
     </script>
 </body>
