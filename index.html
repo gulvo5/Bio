@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio</title>
+    <title>Леон — Bio</title>
     <!-- Подключение иконок -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -41,7 +41,7 @@
             padding: 24px;
         }
 
-        /* Главная карточка (эстетика бумажного листа) */
+        /* Главная карточка */
         .bio-card {
             background-color: var(--color-paper-white);
             border: 1px solid var(--color-chalk);
@@ -53,18 +53,17 @@
             box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 20px 0px;
         }
 
-        /* Аватарка (черно-белый стиль) */
+        /* Аватарка */
         .avatar {
             width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            filter: grayscale(100%); /* Делает фото черно-белым */
             border: 1px solid var(--color-mist);
             margin-bottom: 24px;
         }
 
-        /* Имя (Антиква) */
+        /* Имя */
         h1 {
             font-family: var(--font-serif);
             font-size: 24px;
@@ -73,7 +72,7 @@
             margin-bottom: 8px;
         }
 
-        /* Возраст с глиняным акцентом */
+        /* Возраст */
         .age {
             font-size: 14px;
             color: var(--color-ashen);
@@ -85,7 +84,7 @@
 
         .age::after {
             content: "•";
-            color: var(--color-clay); /* Тот самый единственный цветной акцент */
+            color: var(--color-clay);
             font-size: 16px;
         }
 
@@ -102,7 +101,26 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--color-ashen);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* Обложка трека (стиль Spotify / Claude) */
+        .track-cover-wrapper {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 16px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--color-mist);
+            box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px 0px;
+            background-color: var(--color-chalk);
+        }
+
+        .track-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         .track-info {
@@ -114,6 +132,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            padding: 0 8px;
         }
 
         /* Кнопки управления */
@@ -131,25 +150,30 @@
             color: var(--color-graphite);
             cursor: pointer;
             font-size: 16px;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.1s ease;
         }
 
         .btn:hover {
             color: var(--color-carbon-ink);
+            transform: scale(1.05);
         }
 
-        /* Кнопка Play (Инверсия: темный круг, светлая иконка) */
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Кнопка Play/Pause */
         .btn-play {
             background-color: var(--color-carbon-ink);
             color: var(--color-bone-parchment);
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 14px;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease;
         }
 
         .btn-play:hover {
@@ -200,7 +224,7 @@
             font-weight: 500;
         }
 
-        /* Кнопка Telegram (Стиль Filled Dark Button) */
+        /* Кнопка Telegram */
         .telegram-btn {
             display: inline-flex;
             align-items: center;
@@ -225,16 +249,22 @@
 <body>
 
     <div class="bio-card">
-        <!-- Твое изображение (автоматически переводится в ЧБ) -->
+        <!-- Твое изображение -->
         <img src="avatar.png" alt="Аватар" class="avatar">
         
         <!-- Твое имя -->
-        <h1>Твое Имя</h1>
+        <h1>Леон</h1>
         <div class="age">14 лет</div>
 
         <!-- Минималистичный аудиоплеер -->
         <div class="player-container">
             <div class="player-title">Сейчас играет</div>
+            
+            <!-- Обложка трека -->
+            <div class="track-cover-wrapper">
+                <img id="track-cover" src="cover_yashelegem.jpg" alt="Обложка" class="track-cover">
+            </div>
+
             <div class="track-info" id="track-title">Выберите песню</div>
             
             <audio id="audio-player" src=""></audio>
@@ -245,20 +275,21 @@
                 <button class="btn" id="next-btn"><i class="fas fa-forward"></i></button>
             </div>
 
+            <!-- Плейлист с путями к песням и их обложкам -->
             <ul class="playlist" id="playlist">
-                <li class="playlist-item active" data-src="yashelegem.mp3">
+                <li class="playlist-item active" data-src="yashelegem.mp3" data-cover="cover_yashelegem.jpg">
                     <span>Рустам Асадуллин — Яшьлегем</span>
                     <i class="fas fa-music"></i>
                 </li>
-                <li class="playlist-item" data-src="kochaklama.mp3">
+                <li class="playlist-item" data-src="kochaklama.mp3" data-cover="cover_kochaklama.jpg">
                     <span>Анвар Нургалиев — Кочаклама яратмыйча</span>
                     <i class="fas fa-music"></i>
                 </li>
-                <li class="playlist-item" data-src="yalgiz_torna.mp3">
+                <li class="playlist-item" data-src="yalgiz_torna.mp3" data-cover="cover_yalgiz.jpg">
                     <span>Фирдус Тямаев — Ялгыз Торна</span>
                     <i class="fas fa-music"></i>
                 </li>
-                <li class="playlist-item" data-src="chakyr_gina_mine.mp3">
+                <li class="playlist-item" data-src="chakyr_gina_mine.mp3" data-cover="cover_chakyr.jpg">
                     <span>Ринат Рахматуллин — Чакыр гына мине</span>
                     <i class="fas fa-music"></i>
                 </li>
@@ -277,6 +308,7 @@
         const prevBtn = document.getElementById('prev-btn');
         const nextBtn = document.getElementById('next-btn');
         const trackTitle = document.getElementById('track-title');
+        const trackCover = document.getElementById('track-cover');
         const playlistItems = document.querySelectorAll('.playlist-item');
 
         let currentTrackIndex = 0;
@@ -289,6 +321,13 @@
             
             audio.src = activeItem.getAttribute('data-src');
             trackTitle.textContent = activeItem.querySelector('span').textContent;
+            
+            // Анимация смены обложки
+            trackCover.style.opacity = '0.3';
+            setTimeout(() => {
+                trackCover.src = activeItem.getAttribute('data-cover');
+                trackCover.style.opacity = '1';
+            }, 150);
         }
 
         function togglePlay() {
@@ -305,13 +344,13 @@
         function nextTrack() {
             currentTrackIndex = (currentTrackIndex + 1) % playlistItems.length;
             loadTrack(currentTrackIndex);
-            if (isPlaying) audio.play();
+            if (isPlaying) audio.play().catch(e => {});
         }
 
         function prevTrack() {
             currentTrackIndex = (currentTrackIndex - 1 + playlistItems.length) % playlistItems.length;
             loadTrack(currentTrackIndex);
-            if (isPlaying) audio.play();
+            if (isPlaying) audio.play().catch(e => {});
         }
 
         playBtn.addEventListener('click', togglePlay);
